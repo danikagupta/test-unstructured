@@ -3,3 +3,15 @@ numpy
 pandas
 pydeck
 streamlit
+PyPDF2
+pinecone-client
+langchain
+openai
+sendgrid
+markdown
+mistune
+unstructured-client
+unstructured
+langchain-core 
+langchain-community 
+langchain-openai
