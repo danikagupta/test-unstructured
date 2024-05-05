@@ -1,30 +1,28 @@
 import streamlit as st
+from pinecone import Pinecone
+from openai import OpenAI
 
 from unstructured_client import UnstructuredClient
 from unstructured_client.models import shared
 from unstructured_client.models.errors import SDKError
 
-from openai import OpenAI
-
-from pinecone import Pinecone
-
-from unstructured.staging.base import dict_to_elements
-
-from langchain_openai import ChatOpenAI
-from langchain_core.output_parsers import StrOutputParser
-from langchain_core.prompts import ChatPromptTemplate
-from langchain_core.runnables import RunnableParallel, RunnablePassthrough
-
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain.document_loaders import PyPDFLoader
 import hashlib
+
+from unstructured.staging.base import dict_to_elements
+
+#from langchain_openai import ChatOpenAI
+#from langchain_core.output_parsers import StrOutputParser
+#from langchain_core.prompts import ChatPromptTemplate
+#from langchain_core.runnables import RunnableParallel, RunnablePassthrough
 
 
 from utils import show_navigation
 show_navigation()
 
-client=OpenAI(api_key=st.secrets['OPENAI_API_KEY'])
 PINECONE_INDEX_NAME=st.secrets['PINECONE_INDEX_NAME']
+client=OpenAI(api_key=st.secrets['OPENAI_API_KEY'])
 
 def embed(text,filename):
     pc = Pinecone(api_key = st.secrets["PINECONE_API_KEY"])
@@ -74,26 +72,6 @@ def process_file(file_contents, file_name):
         final_text += n.text
     return resp, elements, tables, final_text
 
-def get_model():
-    model = ChatOpenAI(model="gpt-4-turbo", api_key=st.secrets['OPENAI_API_KEY'])
-    return model
-
-a = """
-def process_query(table_data):
-    st.write("# Answer question based on table data")
-    if query := st.text_input("What do you want to know?"):
-        model=get_model()
-        template = ""Answer the question based only on the following context:
-                {context}
-
-                Question: {question}
-        ""
-        prompt = ChatPromptTemplate.from_template(template)
-        output_parser = StrOutputParser()
-        chain =  prompt | model | output_parser
-        resp=chain.invoke({"context": table_data, "question": query})
-        return resp
-"""
 
 #
 # Main

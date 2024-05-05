@@ -16,6 +16,7 @@ pandas
 streamlit
 unstructured-client
 unstructured
+unstructured[s3]
 openai
 langchain-core 
 langchain-community 
