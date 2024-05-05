@@ -9,9 +9,14 @@ langchain
 openai
 sendgrid
 markdown
+markdown
 mistune
+numpy
+pandas
+streamlit
 unstructured-client
 unstructured
+openai
 langchain-core 
 langchain-community 
 langchain-openai

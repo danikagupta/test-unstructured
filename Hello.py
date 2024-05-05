@@ -1,51 +1,34 @@
-# Copyright (c) Streamlit Inc. (2018-2022) Snowflake Inc. (2022)
-#
-# Licensed under the Apache License, Version 2.0 (the "License");
-# you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
-#
-#     http://www.apache.org/licenses/LICENSE-2.0
-#
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
-
 import streamlit as st
-from streamlit.logger import get_logger
 
-LOGGER = get_logger(__name__)
+from utils import show_navigation
+show_navigation()
 
-
-def run():
-    st.set_page_config(
-        page_title="Hello",
-        page_icon="👋",
-    )
-
-    st.write("# :balloon: Welcome to Streamlit! 👋")
-
-    st.sidebar.success("Select a demo above.")
-
+def add_bg_from_url():
     st.markdown(
-        """
-        Streamlit is an open-source app framework built specifically for
-        Machine Learning and Data Science projects.
-        **👈 Select a demo from the sidebar** to see some examples
-        of what Streamlit can do!
-        ### Want to learn more?
-        - Check out [streamlit.io](https://streamlit.io)
-        - Jump into our [documentation](https://docs.streamlit.io)
-        - Ask a question in our [community
-          forums](https://discuss.streamlit.io)
-        ### See more complex demos
-        - Use a neural net to [analyze the Udacity Self-driving Car Image
-          Dataset](https://github.com/streamlit/demo-self-driving)
-        - Explore a [New York City rideshare dataset](https://github.com/streamlit/demo-uber-nyc-pickups)
-    """
-    )
+         f"""
+         <style>
+         .stApp {{
+             background-image: url("https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Jasminum_officinale_-_Bot._Mag._31%2C_1787.jpg/220px-Jasminum_officinale_-_Bot._Mag._31%2C_1787.jpg");
+             background-attachment: fixed;
+             background-size: cover;
+             opacity: 0.9;
+         }}
+         </style>
+         """,
+         unsafe_allow_html=True
+     )
 
+# add_bg_from_url() 
 
-if __name__ == "__main__":
-    run()
+  
+st.markdown("# HELLO WORLD")
+
+st.markdown("""
+             Remember to set the following in your .streamlit/secrets.toml file:
+             * OPENAI_API_KEY
+            * PINECONE_API_KEY, PINECONE_API_ENV, PINECONE_INDEX_NAME
+            * If using EMAIL, SENDGRID_API_KEY
+            * If using Dataframe, DATAFRAME_CSV as the URL for the corresponding CSV file 
+            * If using the Quiz App, QUIZ_CSV as the name of the CSV file with Quiz data....
+             """)
+
