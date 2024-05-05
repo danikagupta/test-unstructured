@@ -75,7 +75,7 @@ def process_file(file_contents, file_name):
     return resp, elements, tables, final_text
 
 def get_model():
-    model = ChatOpenAI(model="gpt-3.5-turbo", api_key=st.secrets['OPENAI_API_KEY'])
+    model = ChatOpenAI(model="gpt-4-turbo", api_key=st.secrets['OPENAI_API_KEY'])
     return model
 
 a = """
