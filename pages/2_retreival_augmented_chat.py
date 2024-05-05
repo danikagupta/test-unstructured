@@ -80,7 +80,7 @@ The user's question was: {prompt}
         messageList.append({"role": "user", "content": prompt_guidance})
         
         for response in client.chat.completions.create(
-            model="gpt-3.5-turbo",
+            model="gpt-4-turbo",
             messages=messageList, stream=True):
             delta_response=response.choices[0].delta
             print(f"Delta response: {delta_response}")

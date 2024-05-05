@@ -30,7 +30,7 @@ if prompt := st.chat_input("What is up?"):
         message_placeholder = st.empty()
         full_response = ""
         for response in client.chat.completions.create(
-            model="gpt-3.5-turbo",
+            model="gpt-4-turbo",
             messages=[{"role": m["role"], "content": m["content"]}
                       for m in st.session_state.messages], stream=True):
             delta_response=response.choices[0].delta
