@@ -38,7 +38,7 @@ def embed(text,filename):
     return
 
 def process_file(file_contents, file_name):
-    s=UnstructuredClient(api_key_auth=st.secrets['UNSTRUCTURED_API_KEY'])
+    s=UnstructuredClient(api_key_auth=st.secrets['UNSTRUCTURED_API_KEY'],server_url=st.secrets['UNSTRUCTURED_API_SERVER'])
 
     files=shared.Files(
         content=file_contents,
@@ -59,6 +59,7 @@ def process_file(file_contents, file_name):
     except SDKError as e:
         print(e)
 
+    print(f"Elements = {elements}")
     tables = [el for el in elements if el.category == "Table"]
     st.write("# START")
     final_text=""
